@@ -90,7 +90,7 @@ describe('testa o Component RecipeDEtails/MealsDetails', () => {
     const button = screen.getByTestId(BTN_FINISH);
     expect(ingredientes).toHaveLength(8);
 
-    expect(button).not.toBeDisabled();
+    expect(button).toBeDisabled();
 
     ingredientes.forEach((el) => {
       act(() => {
@@ -98,7 +98,8 @@ describe('testa o Component RecipeDEtails/MealsDetails', () => {
       });
     });
 
-    renderWithRouter(<App />, MEALS_ROUTE);
+    // renderWithRouter(<App />, MEALS_ROUTE);
+    window.location.reload();
 
     await waitFor(() => {
       ingredientes = screen.getAllByTestId(/-ingredient-step/i);
@@ -110,7 +111,7 @@ describe('testa o Component RecipeDEtails/MealsDetails', () => {
       expect(el.firstChild).toBeChecked();
     });
 
-    expect(button).not.toBeDisabled();
+    expect(button).toBeEnabled();
 
     userEvent.click(button);
 
@@ -174,7 +175,7 @@ describe('Testa o componente Drinks', () => {
     const button = screen.getByTestId(BTN_FINISH);
     expect(ingredientes).toHaveLength(3);
 
-    expect(button).not.toBeDisabled();
+    expect(button).toBeDisabled();
 
     ingredientes.forEach((el) => {
       act(() => {
@@ -182,7 +183,8 @@ describe('Testa o componente Drinks', () => {
       });
     });
 
-    renderWithRouter(<App />, DRINK_ROUTE);
+    // renderWithRouter(<App />, DRINK_ROUTE);
+    window.location.reload();
 
     await waitFor(() => {
       ingredientes = screen.getAllByTestId(/-ingredient-step/i);
@@ -194,7 +196,7 @@ describe('Testa o componente Drinks', () => {
       expect(el.firstChild).toBeChecked();
     });
 
-    expect(button).not.toBeDisabled();
+    expect(button).toBeEnabled();
 
     userEvent.click(button);
 
