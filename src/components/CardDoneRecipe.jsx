@@ -10,6 +10,7 @@ import { AppContext } from '../context/AppProvider';
 export default function CardDoneRecipe({ page }) {
   const [linkCopied, setLinkCopied] = useState(false);
   const [seconds, setSeconds] = useState(0);
+  const [idRecipeCopied, setRecipeCopied] = useState('');
   const { doneRecipes, favRecipes, handleUnfavorite } = useContext(AppContext);
 
   const THREE = 3;
@@ -37,12 +38,14 @@ export default function CardDoneRecipe({ page }) {
     } else if (linkCopied && seconds === 0) {
       clearInterval(interval);
       setLinkCopied(false);
+      setLinkCopied('');
     }
   }, [linkCopied, seconds]);
 
   const handleClick = useCallback(({ target: { name, id } }) => {
     const link = `http://localhost:3000/${name}s/${id}`;
     clipboardCopy(link);
+    setRecipeCopied(id);
     setLinkCopied(true);
     setSeconds(THREE);
   }, []);
@@ -107,7 +110,7 @@ export default function CardDoneRecipe({ page }) {
                 variant="info"
                 onClick={ handleClick }
               >
-                {linkCopied
+                { linkCopied && idRecipeCopied === recipe.id
                   ? <span>Link copied!</span>
                   : (
                     <img
