@@ -5,7 +5,7 @@ import useFilterRecipes from '../hooks/useFilterRecipes';
 
 export default function AppProvider({ children }) {
   const [searchData, setSearchData] = useState([]);
-  const { fetchData, fetchCategories, isLoading } = useFetch();
+  const { fetchData, fetchCategories, isLoading, setIsLoading } = useFetch();
 
   const { filterRecipes } = useFilterRecipes();
   const [doneRecipes, setDoneRecipes] = useState(filterRecipes('all', 'done'));
@@ -30,6 +30,7 @@ export default function AppProvider({ children }) {
     fetchData,
     fetchCategories,
     isLoading,
+    setIsLoading,
     searchData,
     setSearchData,
     doneRecipes,

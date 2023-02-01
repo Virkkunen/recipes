@@ -64,6 +64,7 @@ export default function useFetch() {
     fetchCategories,
     fetchRecipe,
     isLoading,
+    setIsLoading,
     errors,
   };
 }
