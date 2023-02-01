@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Col, Container, Row, Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import useFooter from '../hooks/useFooter';
 import drinkIcon from '../images/drinkIcon.svg';
