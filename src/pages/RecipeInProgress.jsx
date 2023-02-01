@@ -224,7 +224,7 @@ function RecipeInProgress() {
                 disabled={ !btnEnabled }
                 onClick={ handleClick }
               >
-                Finalizar Receita
+                Finish Recipe
               </Button>
             </Row>
           </Container>
