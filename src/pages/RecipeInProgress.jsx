@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { Button, Container, Image, Row, ListGroup } from 'react-bootstrap';
+import { Button, Container, Row, ListGroup, ButtonGroup, Card } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
@@ -125,44 +125,64 @@ function RecipeInProgress() {
         strDrinkThumb,
       }, index) => (
         (idMeal || idDrink) && (
-          <Container key={ `${idMeal || idDrink}${index}` }>
+          <Container
+            key={ `${idMeal || idDrink}${index}` }
+            className="pt-3"
+          >
             <Row>
-              <button
-                data-testid="share-btn"
-                onClick={ handleShare }
-                src={ shareIcon }
-              >
-                <img src={ shareIcon } alt="Share Icon" />
-              </button>
+              <ButtonGroup className="mb-3">
+                <Button
+                  data-testid="share-btn"
+                  onClick={ handleShare }
+                  src={ shareIcon }
+                  variant="info"
+                >
+                  <img src={ shareIcon } alt="Share Icon" />
+                </Button>
 
-              { copied && <p>Link copied!</p> }
+                { copied && <p>Link copied!</p> }
 
-              <button
-                data-testid="favorite-btn"
-                onClick={ handleFavorite }
-                src={ favorite ? blackHeartIcon : whiteHeartIcon }
-              >
-                <img
+                <Button
+                  data-testid="favorite-btn"
+                  onClick={ handleFavorite }
                   src={ favorite ? blackHeartIcon : whiteHeartIcon }
-                  alt="Heart Icon"
-                />
-              </button>
+                >
+                  <img
+                    src={ favorite ? blackHeartIcon : whiteHeartIcon }
+                    alt="Heart Icon"
+                  />
+                </Button>
+              </ButtonGroup>
             </Row>
-            <Row>
-              <h1 data-testid="recipe-title">{strMeal || strDrink}</h1>
-              <h2 data-testid="recipe-category">{`${strCategory} ${strAlcoholic}`}</h2>
-              <Image
-                data-testid="recipe-photo"
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Title data-testid="recipe-title">{strMeal || strDrink}</Card.Title>
+                <Card.Subtitle
+                  data-testid="recipe-category"
+                  className="text-muted"
+                >
+                  {`${strCategory} ${strAlcoholic}`}
+                </Card.Subtitle>
+              </Card.Body>
+              <Card.Img
                 src={ strMealThumb || strDrinkThumb }
+                data-testid="recipe-photo"
+                variant="bottom"
               />
-            </Row>
+
+            </Card>
             <Row>
-              <h3>
-                Ingredients
-              </h3>
               <ListGroup
                 as="ul"
+                className="px-3 mb-3"
               >
+                <ListGroup.Item
+                  as="li"
+                  className="text-bold"
+                  variant="secondary"
+                >
+                  Ingredients
+                </ListGroup.Item>
                 { ingredients.map((
                   { ingredient, measure, id: ingIndex, checked },
                 ) => (
@@ -170,23 +190,13 @@ function RecipeInProgress() {
                     key={ `${ingredient}${measure}` }
                     enabled="false"
                     as="li"
+                    action
+                    active={ checked }
+                    onClick={ () => handleCheck(ingIndex) }
+
                   >
-                    <label
-                      htmlFor={ ingIndex }
-                      data-testid={ `${ingIndex}-ingredient-step` }
-                      className={ checked
-                        ? 'text-decoration-dashed'
-                        : '' }
-                    >
-                      <input
-                        type="checkbox"
-                        id={ ingIndex }
-                        name={ ingredient }
-                        onChange={ () => handleCheck(ingIndex) }
-                        checked={ checked }
-                      />
-                      { ` ${ingredient} ${measure}` }
-                    </label>
+                    { ` ${ingredient} ${measure}` }
+
                   </ListGroup.Item>
                 )) }
               </ListGroup>
@@ -206,8 +216,8 @@ function RecipeInProgress() {
             </Row>
             <Row>
               <Button
-                style={ { position: 'fixed', bottom: 0, width: '100vw' } }
-                variant="primary"
+                className="button-done-recipe"
+                variant="success"
                 size="lg"
                 data-testid="finish-recipe-btn"
                 fixed="bottom"
