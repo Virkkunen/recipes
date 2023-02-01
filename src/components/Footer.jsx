@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Col, Container, Row, Nav } from 'react-bootstrap';
+import { Col, Container, Row, Nav, Navbar } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import useFooter from '../hooks/useFooter';
 import drinkIcon from '../images/drinkIcon.svg';
@@ -15,35 +15,30 @@ export default function Footer() {
   }, [location, setVisibility]);
 
   return (
-    <Container
-      fluid
-      className="footer-container"
-      data-testid="footer"
-    >
-      {visible && (
-        <Row className="my-2">
-          <Col className="justify">
-            <Nav.Link as={ Link } to="/drinks">
-              <img
-                src={ drinkIcon }
-                alt="drink link button"
-                data-testid="drinks-bottom-btn"
-                className="icon-light"
-              />
-            </Nav.Link>
-          </Col>
-          <Col className="justify">
-            <Nav.Link as={ Link } to="/meals">
-              <img
-                className="icon-light"
-                src={ mealIcon }
-                alt="meal link button"
-                data-testid="meals-bottom-btn"
-              />
-            </Nav.Link>
-          </Col>
-        </Row>
-      )}
-    </Container>
+    visible && (
+      <Navbar
+        fixed="bottom"
+        bg="success"
+        variant="light"
+        className="justify"
+      >
+        <Nav.Link as={ Link } to="/drinks">
+          <img
+            src={ drinkIcon }
+            alt="drink link button"
+            data-testid="drinks-bottom-btn"
+            className="icon-light"
+          />
+        </Nav.Link>
+        <Nav.Link as={ Link } to="/meals">
+          <img
+            className="icon-light"
+            src={ mealIcon }
+            alt="meal link button"
+            data-testid="meals-bottom-btn"
+          />
+        </Nav.Link>
+      </Navbar>
+    )
   );
 }

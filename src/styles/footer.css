@@ -1,11 +1,11 @@
 .footer-container {
   background-color: #22bf76;
   bottom: 0;
-  position: fixed;
+  position: absolute;
 }
 
 .justify {
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
