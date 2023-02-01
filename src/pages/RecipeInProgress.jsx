@@ -201,7 +201,7 @@ function RecipeInProgress() {
                 )) }
               </ListGroup>
             </Row>
-            <Row>
+            <Row className="pb-3 mb-5">
               <h3>Instructions</h3>
               <div data-testid="instructions">
                 {/* {

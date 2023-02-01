@@ -4,7 +4,6 @@ import useFetch from '../hooks/useFetch';
 export const RecipesContext = createContext();
 
 const NUMBER_SIX = 6;
-const NUMBER_FOUR = 4;
 
 function RecipesProvider({ children }) {
   const { fetchRecipe, fetchData } = useFetch();
@@ -104,11 +103,9 @@ function RecipesProvider({ children }) {
       const slicedData = data.slice(0, NUMBER_SIX)
         .map((rec, index) => ({ ...rec, id: index }));
 
-      setRecommended([
-        slicedData.slice(0, 2),
-        slicedData.slice(2, NUMBER_FOUR),
-        slicedData.slice(NUMBER_FOUR, NUMBER_SIX),
-      ]);
+      setRecommended(
+        slicedData.slice(0, NUMBER_SIX),
+      );
     };
     getRecommendedRecipes();
   }, [page]);
