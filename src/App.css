@@ -86,10 +86,6 @@
   text-align: center;
 }
 
-.small-text {
-  font-size: 10px;
-}
-
 .text-decoration-none {
   text-decoration: none;
 }
@@ -107,4 +103,8 @@
 
 .text-shadow {
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.82);
+}
+
+.small-text {
+  font-size: 10px;
 }

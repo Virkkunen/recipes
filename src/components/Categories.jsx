@@ -8,7 +8,7 @@ export default function Categories() {
   const { fetchCategories, fetchData, setSearchData } = useContext(AppContext);
   const [categoriesList, setCategories] = useState([]);
   const location = useLocation();
-  const [selectedCategory, setCategory] = useState('');
+  const [selectedCategory, setCategory] = useState('All');
 
   const pageName = useCallback(() => {
     switch (location.pathname) {
@@ -60,9 +60,11 @@ export default function Categories() {
               key={ `cat-${strCategory}` }
               variant="outline-dark"
               data-testid={ `${strCategory}-category-filter` }
-              className="small-text"
               onClick={ (event) => { onClickHandler(event); } }
               value={ strCategory }
+              active={ selectedCategory === strCategory }
+              size="sm"
+              style={ { fontSize: '12px' } }
             >
               {strCategory}
             </Button>
