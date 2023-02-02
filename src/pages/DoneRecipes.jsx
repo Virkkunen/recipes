@@ -4,7 +4,7 @@ import CardDoneRecipe from '../components/CardDoneRecipe';
 import { AppContext } from '../context/AppProvider';
 
 function DoneRecipes() {
-  const { handleDoneRecipesFilter } = useContext(AppContext);
+  const { handleDoneRecipesFilter, category } = useContext(AppContext);
 
   return (
     <Container className="pb-5 mb-4">
@@ -18,6 +18,7 @@ function DoneRecipes() {
             data-testid="filter-by-all-btn"
             name="all"
             onClick={ handleDoneRecipesFilter }
+            active={ category === 'all' }
           >
             All
           </Button>
@@ -26,6 +27,7 @@ function DoneRecipes() {
             data-testid="filter-by-meal-btn"
             name="meal"
             onClick={ handleDoneRecipesFilter }
+            active={ category === 'meal' }
           >
             Meals
           </Button>
@@ -34,6 +36,7 @@ function DoneRecipes() {
             data-testid="filter-by-drink-btn"
             name="drink"
             onClick={ handleDoneRecipesFilter }
+            active={ category === 'drink' }
           >
             Drinks
           </Button>

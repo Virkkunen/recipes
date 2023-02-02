@@ -14,6 +14,7 @@ export default function AppProvider({ children }) {
   const [favRecipes, setFavRecipes] = useState(filterRecipes('all', 'fav'));
 
   const handleDoneRecipesFilter = useCallback(({ target: { name } }) => {
+    setCategory(name);
     setDoneRecipes(filterRecipes(name, 'done'));
   }, [filterRecipes]);
 
