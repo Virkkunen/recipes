@@ -1,18 +1,17 @@
 .meals {
   align-items: center;
-  background: #0fa36b;
   color: #464646;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  height: 100vh;
+  height: 45vh;
   justify-content: center;
   width: 100%;
 }
 
 .rocksGlass {
   animation: shake 1s infinite ease;
-  max-height: 80vh;
+  max-height: 50vh;
 }
 
 .checkedBox input {
@@ -107,4 +106,10 @@
 
 .small-text {
   font-size: 10px;
+}
+
+.wave-bg {
+  position: fixed;
+  top: 0;
+  z-index: -99;
 }
