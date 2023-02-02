@@ -84,7 +84,7 @@ function Recipes() {
   return (
     <>
       <Categories />
-      <Container className="pb-5 mb-4">
+      <Container className="pb-5 mb-4 col-md-4 mx-auto">
         <h1 className="mb-3">Recipes</h1>
         <Stack
           direction="vertical"

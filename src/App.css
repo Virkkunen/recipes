@@ -115,28 +115,3 @@
   top: 0;
   z-index: -99;
 }
-
-
-@media only screen and ( min-width : 768px ) {
-
-  html {
-    background-color: #11111b;
-    height: 100vh;
-    margin: auto;
-    max-width: 768px;
-  }
-
-  body {
-    background-color: white;
-  }
-
-  .wave-bg {
-    top: 0;
-    width: 768px;
-  }
-
-  .button-done-recipe {
-    margin: auto;
-    max-width: 768px ! important;
-  }
-}

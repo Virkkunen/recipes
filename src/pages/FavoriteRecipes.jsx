@@ -7,7 +7,7 @@ function FavoriteRecipes() {
   const { handleFavRecipesFilter, category } = useContext(AppContext);
 
   return (
-    <Container className="pb-5 mb-4">
+    <Container className="pb-5 mb-4 col-md-4 mx-auto">
       <Row>
         <ButtonGroup
           size="sm"

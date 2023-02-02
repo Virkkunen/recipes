@@ -52,7 +52,7 @@ export default function Categories() {
       {/* <Stack direction="horizontal" className="col-md-4 mx-auto"> */}
       <ButtonGroup
         size="sm"
-        className="mb-3"
+        className="mb-3 col-md-4 mx-auto"
       >
         {
           categoriesList.map(({ strCategory }) => (

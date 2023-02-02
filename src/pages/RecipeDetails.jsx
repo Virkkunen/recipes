@@ -81,7 +81,7 @@ function RecipeDetails() {
         (idMeal || idDrink) && (
           <Container
             key={ `${idMeal || idDrink}${index}` }
-            className="pt-3"
+            className="pt-3 col-md-4 mx-auto"
           >
             <Row>
               <ButtonGroup className="mb-3">
@@ -210,7 +210,7 @@ function RecipeDetails() {
             { !done && (
               <Row>
                 <Button
-                  className="button-done-recipe"
+                  className="button-done-recipe col-md-4"
                   variant="primary"
                   size="lg"
                   data-testid="start-recipe-btn"

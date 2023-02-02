@@ -19,7 +19,7 @@ function Header() {
     <>
       { visible
       && (
-        <Navbar bg="primary" variant="dark" className="mb-2">
+        <Navbar bg="primary" variant="dark" className="mb-2 col-md-4 mx-auto">
           <Container>
             <Navbar.Brand data-testid="page-title">
               { pageTitle }
