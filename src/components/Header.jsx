@@ -62,7 +62,7 @@ function Header() {
       ) } */}
       <Collapse in={ inputVisible }>
         <Container id="collapse-search">
-          <SearchBar />
+          { (inputVisible && searchVisible && visible) && <SearchBar /> }
         </Container>
       </Collapse>
     </>

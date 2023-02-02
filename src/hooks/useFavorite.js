@@ -1,4 +1,9 @@
+import { useContext } from 'react';
+import { AppContext } from '../context/AppProvider';
+
 export default function useFavorite() {
+  const { handleFavRecipesFilter } = useContext(AppContext);
+
   function recipeObjectCreator({ idMeal, idDrink,
     strMeal, strDrink,
     strMealThumb, strDrinkThumb,
@@ -31,6 +36,7 @@ export default function useFavorite() {
     }
 
     localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+    handleFavRecipesFilter({ target: { name: 'all' } });
   }
 
   return {

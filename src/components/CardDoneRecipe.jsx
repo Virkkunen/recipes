@@ -10,23 +10,28 @@ import { AppContext } from '../context/AppProvider';
 export default function CardDoneRecipe({ page }) {
   const [idRecipeCopied, setRecipeCopied] = useState('');
   const [seconds, setSeconds] = useState(0);
-  const { doneRecipes, favRecipes, handleUnfavorite } = useContext(AppContext);
+  const [recipeArr, setRecipeArr] = useState([]);
+  const {
+    doneRecipes,
+    favRecipes,
+    handleUnfavorite,
+  } = useContext(AppContext);
 
   const THREE = 3;
   const ONE_SECOND = 1000;
 
-  let recipeArr;
-
-  switch (page) {
-  case 'done':
-    recipeArr = doneRecipes;
-    break;
-  case 'fav':
-    recipeArr = favRecipes;
-    break;
-  default:
-    break;
-  }
+  useEffect(() => {
+    switch (page) {
+    case 'done':
+      setRecipeArr(doneRecipes);
+      break;
+    case 'fav':
+      setRecipeArr(favRecipes);
+      break;
+    default:
+      break;
+    }
+  }, [doneRecipes, favRecipes]);
 
   useEffect(() => {
     let interval = null;

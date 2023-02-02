@@ -7,6 +7,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import useFavorite from '../hooks/useFavorite';
 import { RecipesContext } from '../context/RecipesProvider';
+import { AppContext } from '../context/AppProvider';
 import '../styles/Recipe.css';
 
 function RecipeInProgress() {
@@ -27,6 +28,8 @@ function RecipeInProgress() {
     setIngredients,
     getPageInfo,
   } = useContext(RecipesContext);
+
+  const { handleDoneRecipesFilter } = useContext(AppContext);
 
   useEffect(() => {
     getPageInfo(id, page);
@@ -64,7 +67,7 @@ function RecipeInProgress() {
   const handleClick = useCallback(() => {
     const a = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
     localStorage.setItem('doneRecipes', JSON.stringify([...a, doneRecipeObjectBuild()]));
-
+    handleDoneRecipesFilter({ target: { name: 'all' } }); // Atualiza state
     history.push('/done-recipes');
   }, [doneRecipeObjectBuild, history]);
 
