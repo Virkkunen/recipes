@@ -7,6 +7,8 @@ export default function AppProvider({ children }) {
   const [searchData, setSearchData] = useState([]);
   const { fetchData, fetchCategories, isLoading, setIsLoading } = useFetch();
 
+  const [category, setCategory] = useState('all');
+
   const { filterRecipes } = useFilterRecipes();
   const [doneRecipes, setDoneRecipes] = useState(filterRecipes('all', 'done'));
   const [favRecipes, setFavRecipes] = useState(filterRecipes('all', 'fav'));
@@ -16,6 +18,7 @@ export default function AppProvider({ children }) {
   }, [filterRecipes]);
 
   const handleFavRecipesFilter = useCallback(({ target: { name } }) => {
+    setCategory(name);
     setFavRecipes(filterRecipes(name, 'fav'));
   }, [filterRecipes]);
 
@@ -38,6 +41,7 @@ export default function AppProvider({ children }) {
     handleFavRecipesFilter,
     favRecipes,
     handleUnfavorite,
+    category,
   }), [
     fetchData,
     fetchCategories,
@@ -49,6 +53,8 @@ export default function AppProvider({ children }) {
     handleDoneRecipesFilter,
     handleFavRecipesFilter,
     handleUnfavorite,
+    setIsLoading,
+    category,
   ]);
 
   return (
