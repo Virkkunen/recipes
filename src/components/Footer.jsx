@@ -20,7 +20,7 @@ export default function Footer() {
         fixed="bottom"
         bg="success"
         variant="light"
-        className="justify"
+        className="justify footer-container"
       >
         <Nav.Link as={ Link } to="/drinks">
           <img

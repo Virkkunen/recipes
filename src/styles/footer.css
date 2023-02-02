@@ -1,7 +1,5 @@
 .footer-container {
-  background-color: #22bf76;
-  bottom: 0;
-  position: absolute;
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.32);
 }
 
 .justify {
