@@ -4,30 +4,32 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { AppContext } from '../context/AppProvider';
 import Categories from '../components/Categories';
 import cleanDataAttributes from '../helper/cleanDataAttributes';
+import rockGlass from '../images/rockGlass.svg';
 
 function Recipes() {
-  const { fetchData, searchData, setSearchData } = useContext(AppContext);
+  const { fetchData, searchData, setSearchData, isLoading } = useContext(AppContext);
   const location = useLocation();
   const history = useHistory();
 
-  const pageName = useCallback(() => {
-    switch (location.pathname) {
-    case '/meals':
-      return 'meal';
-    default: // /drinks
-      return 'cocktail';
-    }
-  }, [location.pathname]);
+  // const pageName = useCallback(() => {
+  //   switch (location.pathname) {
+  //   case '/meals':
+  //     return 'meal';
+  //   default: // /drinks
+  //     return 'cocktail';
+  //   }
+  // }, [location.pathname]);
 
   useEffect(() => {
     async function setDefaultRecipes() {
-      const data = await fetchData(pageName(), 'name', '');
+      const data = await
+      fetchData(location.pathname === '/meals' ? 'meal' : 'cocktail', 'name', '');
       const path = location.pathname.replace('/', '');
       const cleanData = cleanDataAttributes(data, path);
       setSearchData(cleanData[path]);
     }
     setDefaultRecipes();
-  }, [location.pathname, pageName, setSearchData]);
+  }, [location.pathname, setSearchData]);
 
   const recipeCard = useCallback(({ index, str: title, thumb: img, id, idMeal }) => (
     <Col
@@ -59,22 +61,19 @@ function Recipes() {
   const recipeListLength = 12;
 
   const recipeList = useCallback(() => {
-    if (!searchData.length) {
+    if (isLoading) {
       return (
         <Card>
-          <Card.Img variant="top" />
+          <Card.Img
+            className="rocksGlass bw-filter w-75 mx-5"
+            variant="top"
+            src={ rockGlass }
+          />
           <Card.Body>
             <Placeholder as={ Card.Title } animation="glow">
               <Placeholder xs={ 6 } />
             </Placeholder>
-            <Placeholder as={ Card.Text } animation="glow">
-              <Placeholder xs={ 7 } />
-              <Placeholder xs={ 4 } />
-              <Placeholder xs={ 4 } />
-              <Placeholder xs={ 6 } />
-              <Placeholder xs={ 8 } />
-            </Placeholder>
-            <Placeholder.Button variant="primary" xs={ 6 } />
+            <Placeholder as={ Card.Text } animation="glow" />
           </Card.Body>
         </Card>
       );
@@ -90,15 +89,9 @@ function Recipes() {
       <Categories />
       <Container className="pb-5 mb-4 col-md-5 mx-auto">
         <h1 className="mb-3">Recipes</h1>
-        {/* <Stack
-          direction="vertical"
-          gap={ 3 }
-        > */}
         <Row xs={ 1 } md={ 3 } className="g-4 mx-auto">
           { recipeList() }
-
         </Row>
-        {/* </Stack> */}
       </Container>
     </>
   );

@@ -15,6 +15,10 @@
   max-height: 50vh;
 }
 
+.bw-filter {
+  filter: grayscale(100%);
+}
+
 .checkedBox input {
   border: solid red;
   margin-right: 5px;

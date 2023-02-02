@@ -16,6 +16,8 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import useFavorite from '../hooks/useFavorite';
 import { RecipesContext } from '../context/RecipesProvider';
+import { AppContext } from '../context/AppProvider';
+import PlaceholderRecipeDetails from '../components/PlaceholderRecipeDetails';
 
 const NUMBER_THIRTY_TWO = 32;
 
@@ -37,6 +39,7 @@ function RecipeDetails() {
     checkRecipeStatus,
     recipe,
   } = useContext(RecipesContext);
+  const { isLoading } = useContext(AppContext);
 
   useEffect(() => {
     getPageInfo(id, page);
@@ -64,7 +67,7 @@ function RecipeDetails() {
     toggleFavorite(recipe[0]);
   }, [favorite, recipe, toggleFavorite]);
 
-  return (
+  const renderRecipe = useCallback(() => (
     <>
       { recipe.map(({
         idMeal,
@@ -228,8 +231,11 @@ function RecipeDetails() {
             ) }
           </Container>
         )
-      )) }
+      ))}
     </>
+  ));
+  return (
+    (isLoading && <PlaceholderRecipeDetails />) || renderRecipe()
   );
 }
 

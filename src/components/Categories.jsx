@@ -10,14 +10,9 @@ export default function Categories() {
   const location = useLocation();
   const [selectedCategory, setCategory] = useState('All');
 
-  const pageName = useCallback(() => {
-    switch (location.pathname) {
-    case '/drinks':
-      return 'cocktail';
-    default:
-      return 'meal';
-    }
-  }, [location.pathname]);
+  const pageName = useCallback(() => (
+    location.pathname === '/meals' ? 'meal' : 'cocktail'
+  ), [location.pathname]);
 
   const onClickHandler = useCallback(async ({ target: { value } }) => {
     let strCategory = value;
