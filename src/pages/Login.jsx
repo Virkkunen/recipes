@@ -38,7 +38,7 @@ function Login({ history }) {
 
   return (
     <>
-      <Container>
+      <Container className="login-container">
         <Row>
           <div className="meals">
             <object
