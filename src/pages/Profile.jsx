@@ -18,7 +18,7 @@ function Profile({ history }) {
   }, [history]);
 
   return (
-    <Container className="col-md-4 mx-auto">
+    <Container className="col-md-5 mx-auto">
       <Stack
         gap={ 2 }
         direction="vertical"

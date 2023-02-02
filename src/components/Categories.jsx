@@ -49,10 +49,9 @@ export default function Categories() {
 
   return (
     <Container className="text-center">
-      {/* <Stack direction="horizontal" className="col-md-4 mx-auto"> */}
       <ButtonGroup
         size="sm"
-        className="mb-3 col-md-4 mx-auto"
+        className="mb-3 col-md-5 mx-auto"
       >
         {
           categoriesList.map(({ strCategory }) => (
@@ -72,7 +71,6 @@ export default function Categories() {
         }
       </ButtonGroup>
 
-      {/* </Stack> */}
     </Container>
   );
 }

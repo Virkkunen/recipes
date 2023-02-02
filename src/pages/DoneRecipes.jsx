@@ -7,7 +7,7 @@ function DoneRecipes() {
   const { handleDoneRecipesFilter, category } = useContext(AppContext);
 
   return (
-    <Container className="pb-5 mb-4 col-md-4 mx-auto">
+    <Container className="pb-5 mb-4 col-md-5 mx-auto">
       <Row>
         <ButtonGroup
           size="sm"

@@ -115,3 +115,10 @@
   top: 0;
   z-index: -99;
 }
+
+@media only screen and ( min-width : 576px ) {
+
+  .wave-bg {
+    width: 100vw;
+  }
+}

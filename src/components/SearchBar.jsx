@@ -54,7 +54,7 @@ function SearchBar() {
   ]);
 
   return (
-    <div className="col-md-4 mx-auto">
+    <div className="col-md-5 mx-auto">
       <InputGroup size="sm mb-1">
         <Form.Control
           data-testid="search-input"

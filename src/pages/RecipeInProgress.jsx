@@ -130,7 +130,7 @@ function RecipeInProgress() {
         (idMeal || idDrink) && (
           <Container
             key={ `${idMeal || idDrink}${index}` }
-            className="pt-3 col-md-4 mx-auto"
+            className="pt-3 col-md-5 mx-auto"
           >
             <Row>
               <ButtonGroup className="mb-3">
@@ -219,7 +219,7 @@ function RecipeInProgress() {
             </Row>
             <Row>
               <Button
-                className="button-done-recipe col-md-4 mx-auto"
+                className="button-done-recipe col-md-5 mx-auto"
                 variant="success"
                 size="lg"
                 data-testid="finish-recipe-btn"
