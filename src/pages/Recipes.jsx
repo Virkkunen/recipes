@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-import { Card, Container, Placeholder, Stack } from 'react-bootstrap';
+import { Card, Col, Container, Placeholder, Row } from 'react-bootstrap';
 import { useLocation, useHistory } from 'react-router-dom';
 import { AppContext } from '../context/AppProvider';
 import Categories from '../components/Categories';
@@ -30,26 +30,30 @@ function Recipes() {
   }, [location.pathname, pageName, setSearchData]);
 
   const recipeCard = useCallback(({ index, str: title, thumb: img, id, idMeal }) => (
-    <Card
+    <Col
       key={ index }
-      data-testid={ `${index}-recipe-card` }
-      bg="light"
-      text="dark"
-      onClick={ () => { history.push(`${idMeal ? 'meal' : 'drink'}s/${id}`); } }
     >
-      <Card.Img
-        variant="top"
-        data-testid={ `${index}-card-img` }
-        src={ img }
-      />
-      <Card.Body>
-        <Card.Title
-          data-testid={ `${index}-card-name` }
-        >
-          { title }
-        </Card.Title>
-      </Card.Body>
-    </Card>
+      <Card
+        data-testid={ `${index}-recipe-card` }
+        bg="light"
+        text="dark"
+        onClick={ () => { history.push(`${idMeal ? 'meal' : 'drink'}s/${id}`); } }
+      >
+        <Card.Img
+          variant="top"
+          data-testid={ `${index}-card-img` }
+          src={ img }
+        />
+        <Card.Body>
+          <Card.Title
+            data-testid={ `${index}-card-name` }
+          >
+            { title }
+          </Card.Title>
+        </Card.Body>
+      </Card>
+    </Col>
+
   ), [history]);
 
   const recipeListLength = 12;
@@ -57,8 +61,8 @@ function Recipes() {
   const recipeList = useCallback(() => {
     if (!searchData.length) {
       return (
-        <Card style={ { width: '18rem' } }>
-          <Card.Img variant="top" src="holder.js/100px180" />
+        <Card>
+          <Card.Img variant="top" />
           <Card.Body>
             <Placeholder as={ Card.Title } animation="glow">
               <Placeholder xs={ 6 } />
@@ -86,12 +90,15 @@ function Recipes() {
       <Categories />
       <Container className="pb-5 mb-4 col-md-5 mx-auto">
         <h1 className="mb-3">Recipes</h1>
-        <Stack
+        {/* <Stack
           direction="vertical"
           gap={ 3 }
-        >
+        > */}
+        <Row xs={ 1 } md={ 3 } className="g-4 mx-auto">
           { recipeList() }
-        </Stack>
+
+        </Row>
+        {/* </Stack> */}
       </Container>
     </>
   );

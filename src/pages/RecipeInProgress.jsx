@@ -135,6 +135,14 @@ function RecipeInProgress() {
             <Row>
               <ButtonGroup className="mb-3">
                 <Button
+                  variant="secondary"
+                  onClick={ () => history.push(
+                    `${idMeal ? '/meals/' : '/drinks/'}${idMeal || idDrink}`,
+                  ) }
+                >
+                  Back
+                </Button>
+                <Button
                   data-testid="share-btn"
                   onClick={ handleShare }
                   src={ shareIcon }

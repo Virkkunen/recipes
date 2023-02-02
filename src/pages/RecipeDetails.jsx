@@ -86,6 +86,12 @@ function RecipeDetails() {
             <Row>
               <ButtonGroup className="mb-3">
                 <Button
+                  variant="secondary"
+                  onClick={ () => history.push(idMeal ? '/meals' : '/drinks') }
+                >
+                  Back
+                </Button>
+                <Button
                   data-testid="share-btn"
                   onClick={ handleShare }
                   src={ shareIcon }
@@ -143,7 +149,6 @@ function RecipeDetails() {
                     key={ `${ingredient}${measure}` }
                     enabled="false"
                     as="li"
-                    action
                   >
                     { ` ${ingredient} ${measure}` }
                   </ListGroup.Item>
