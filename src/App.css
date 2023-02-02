@@ -110,9 +110,9 @@
 }
 
 .wave-bg {
-  height: 100vh;
+  bottom: 0;
   position: fixed;
-  top: 0;
+  width: 450vw;
   z-index: -99;
 }
 
