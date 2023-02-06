@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+/* eslint-disable max-len */
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,21 +23,22 @@ function App() {
       <AuthProvider>
         <RecipesProvider>
           <Header />
-          <Switch />
-          <Route exact path="/" component={ Login } />
-          <Route exact path="/meals" component={ Recipes } />
-          <Route exact path="/drinks" component={ Recipes } />
-          <Route exact path="/meals/:id" component={ RecipeDetails } />
-          <Route exact path="/drinks/:id" component={ RecipeDetails } />
-          <Route exact path="/meals/:id/in-progress" component={ RecipeInProgress } />
-          <Route
-            exact
-            path="/drinks/:id/in-progress"
-            component={ RecipeInProgress }
-          />
-          <Route exact path="/profile" component={ Profile } />
-          <Route exact path="/done-recipes" component={ DoneRecipes } />
-          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
+          <Switch>
+            <Route exact path="/recipes" component={ Login } />
+            <Route exact path="/meals" component={ Recipes } />
+            <Route exact path="/drinks" component={ Recipes } />
+            <Route exact path="/meals/:id" component={ RecipeDetails } />
+            <Route exact path="/drinks/:id" component={ RecipeDetails } />
+            <Route exact path="/meals/:id/in-progress" component={ RecipeInProgress } />
+            <Route
+              exact
+              path="/drinks/:id/in-progress"
+              component={ RecipeInProgress }
+            />
+            <Route exact path="/profile" component={ Profile } />
+            <Route exact path="/done-recipes" component={ DoneRecipes } />
+            <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
+          </Switch>
           <Footer />
         </RecipesProvider>
       </AuthProvider>
