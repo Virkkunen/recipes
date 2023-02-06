@@ -1,9 +1,8 @@
 import { React, useEffect, useState } from 'react';
 import { Container, Navbar, Nav, Button, Collapse } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { FaSearch, FaUser } from 'react-icons/fa';
 import useHeader from '../hooks/useHeader';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
 function Header() {
@@ -25,12 +24,7 @@ function Header() {
               { pageTitle }
             </Navbar.Brand>
             <Nav.Link as={ Link } to="/profile">
-              <img
-                src={ profileIcon }
-                alt="Ícone de perfil"
-                data-testid="profile-top-btn"
-                className="icon-light"
-              />
+              <FaUser size="1.6em" color="#ffffffcc" />
             </Nav.Link>
             { searchVisible
               && (
@@ -41,25 +35,12 @@ function Header() {
                   aria-controls="collapse-search"
                   aria-expanded={ inputVisible }
                 >
-                  <img
-                    src={ searchIcon }
-                    alt="Ícone de pesquisa"
-                    data-testid="search-top-btn"
-                    className="icon-light"
-                  />
+                  <FaSearch size="1.6em" color="#ffffffcc" />
                 </Button>
               )}
           </Container>
         </Navbar>
       )}
-      {/* {(inputVisible && visible) && (
-        <Container
-          className="mb-2"
-          id="collapse-search"
-        >
-          <SearchBar />
-        </Container>
-      ) } */}
       <Collapse in={ inputVisible }>
         <Container id="collapse-search">
           { (inputVisible && searchVisible && visible) && <SearchBar /> }

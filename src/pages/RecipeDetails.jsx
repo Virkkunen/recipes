@@ -11,13 +11,10 @@ import {
   Row } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import { FaHeart, FaShareAlt, FaRegHeart, FaCheck } from 'react-icons/fa';
+import { MdArrowBack } from 'react-icons/md';
 import useFavorite from '../hooks/useFavorite';
 import { RecipesContext } from '../context/RecipesProvider';
-import { AppContext } from '../context/AppProvider';
-import PlaceholderRecipeDetails from '../components/PlaceholderRecipeDetails';
 
 const NUMBER_THIRTY_TWO = 32;
 
@@ -39,7 +36,6 @@ function RecipeDetails() {
     checkRecipeStatus,
     recipe,
   } = useContext(RecipesContext);
-  const { isLoading } = useContext(AppContext);
 
   useEffect(() => {
     getPageInfo(id, page);
@@ -92,28 +88,24 @@ function RecipeDetails() {
                   variant="secondary"
                   onClick={ () => history.push(idMeal ? '/meals' : '/drinks') }
                 >
-                  Back
+                  <MdArrowBack size="1.6em" color="#ffffffee" />
                 </Button>
                 <Button
                   data-testid="share-btn"
                   onClick={ handleShare }
-                  src={ shareIcon }
                   variant="info"
                 >
-                  <img src={ shareIcon } alt="Share Icon" />
+                  {copied
+                    ? (<FaCheck size="1.2em" color="#ffffffee" />)
+                    : (<FaShareAlt size="1.2em" color="#ffffffee" />) }
                 </Button>
-
-                { copied && <p>Link copied!</p> }
-
                 <Button
                   data-testid="favorite-btn"
                   onClick={ handleFavorite }
-                  src={ favorite ? blackHeartIcon : whiteHeartIcon }
                 >
-                  <img
-                    src={ favorite ? blackHeartIcon : whiteHeartIcon }
-                    alt="Heart Icon"
-                  />
+                  {favorite
+                    ? (<FaHeart size="1.2em" color="#ffffffee" />)
+                    : (<FaRegHeart size="1.2em" color="#ffffffee" />)}
                 </Button>
               </ButtonGroup>
             </Row>
@@ -235,7 +227,7 @@ function RecipeDetails() {
     </>
   ));
   return (
-    (isLoading && <PlaceholderRecipeDetails />) || renderRecipe()
+    renderRecipe()
   );
 }
 

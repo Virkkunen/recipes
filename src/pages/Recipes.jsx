@@ -11,15 +11,6 @@ function Recipes() {
   const location = useLocation();
   const history = useHistory();
 
-  // const pageName = useCallback(() => {
-  //   switch (location.pathname) {
-  //   case '/meals':
-  //     return 'meal';
-  //   default: // /drinks
-  //     return 'cocktail';
-  //   }
-  // }, [location.pathname]);
-
   useEffect(() => {
     async function setDefaultRecipes() {
       const data = await

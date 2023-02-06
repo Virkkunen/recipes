@@ -2,9 +2,8 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Button, Container, Row, ListGroup, ButtonGroup, Card } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import { FaHeart, FaShareAlt, FaRegHeart, FaCheck } from 'react-icons/fa';
+import { MdArrowBack } from 'react-icons/md';
 import useFavorite from '../hooks/useFavorite';
 import { RecipesContext } from '../context/RecipesProvider';
 import { AppContext } from '../context/AppProvider';
@@ -140,28 +139,24 @@ function RecipeInProgress() {
                     `${idMeal ? '/meals/' : '/drinks/'}${idMeal || idDrink}`,
                   ) }
                 >
-                  Back
+                  <MdArrowBack size="1.6em" color="#ffffffee" />
                 </Button>
                 <Button
                   data-testid="share-btn"
                   onClick={ handleShare }
-                  src={ shareIcon }
                   variant="info"
                 >
-                  <img src={ shareIcon } alt="Share Icon" />
+                  {copied
+                    ? (<FaCheck size="1.2em" color="#ffffffee" />)
+                    : (<FaShareAlt size="1.2em" color="#ffffffee" />) }
                 </Button>
-
-                { copied && <p>Link copied!</p> }
-
                 <Button
                   data-testid="favorite-btn"
                   onClick={ handleFavorite }
-                  src={ favorite ? blackHeartIcon : whiteHeartIcon }
                 >
-                  <img
-                    src={ favorite ? blackHeartIcon : whiteHeartIcon }
-                    alt="Heart Icon"
-                  />
+                  {favorite
+                    ? (<FaHeart size="1.2em" color="#ffffffee" />)
+                    : (<FaRegHeart size="1.2em" color="#ffffffee" />)}
                 </Button>
               </ButtonGroup>
             </Row>
@@ -215,13 +210,6 @@ function RecipeInProgress() {
             <Row className="pb-3 mb-5">
               <h3>Instructions</h3>
               <div data-testid="instructions">
-                {/* {
-                  strInstructions.split('STEP')
-                    .filter((_, i) => i)
-                    .map((step, i) => (
-                      <p key={ `step-${i}` }>{ `STEP${step}` }</p>
-                    ))
-                } */}
                 { strInstructions }
               </div>
             </Row>

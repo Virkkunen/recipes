@@ -3,8 +3,7 @@ import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, ButtonGroup, Card, Stack } from 'react-bootstrap';
 import clipboardCopy from 'clipboard-copy';
-import shareIcon from '../images/shareIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import { FaHeart, FaShareAlt } from 'react-icons/fa';
 import { AppContext } from '../context/AppProvider';
 
 export default function CardDoneRecipe({ page }) {
@@ -115,13 +114,7 @@ export default function CardDoneRecipe({ page }) {
                 { idRecipeCopied === recipe.id
                   ? <span>Link copied!</span>
                   : (
-                    <img
-                      src={ shareIcon }
-                      alt="share"
-                      data-testid={ `${index}-horizontal-share-btn` }
-                      name={ recipe.type }
-                      id={ recipe.id }
-                    />
+                    <FaShareAlt color="#ffffffcc" />
                   )}
               </Button>
               { page === 'fav'
@@ -130,12 +123,7 @@ export default function CardDoneRecipe({ page }) {
                 variant="primary"
                 onClick={ handleUnfavorite }
               >
-                <img
-                  src={ blackHeartIcon }
-                  alt="Favorite icon"
-                  data-testid={ `${index}-horizontal-favorite-btn` }
-                  id={ recipe.id }
-                />
+                <FaHeart id={ recipe.id } />
               </Button>
             )}
             </ButtonGroup>
