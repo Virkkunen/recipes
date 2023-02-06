@@ -2,7 +2,8 @@
 /* eslint-disable react/jsx-max-depth */
 import PropTypes from 'prop-types';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { Alert, Button, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { FaCode, FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthProvider';
 import rockGlass from '../images/rockGlass.svg';
 import layeredWaves from '../images/layeredWaves.svg';
@@ -88,6 +89,16 @@ function Login({ history }) {
         </Row>
         <Row className="my-5 mx-auto col-md-5 text-center">
           <Alert variant="info">RecipesApp works better on mobile browsers</Alert>
+        </Row>
+        <Row className="my-5 mx-auto col-md-6 text-center">
+          <Col as="a" href="https://github.com/Virkkunen" target="_blank" rel="noopener noreferrer" className="source-footer">
+            <FaGithub />
+            <span className="mx-2">@Virkkunen</span>
+          </Col>
+          <Col as="a" href="https://github.com/Virkkunen/recipes" target="_blank" rel="noopener noreferrer" className="source-footer">
+            <FaCode />
+            <span className="mx-2">source</span>
+          </Col>
         </Row>
       </Container>
       <object

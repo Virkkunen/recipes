@@ -126,3 +126,9 @@
     width: 100vw;
   }
 }
+
+.source-footer {
+  color: #212529;
+  font-weight: 600;
+  text-decoration: none;
+}
