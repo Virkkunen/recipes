@@ -1,7 +1,6 @@
 {
   "name": "recipesapp",
   "version": "1.0.1",
-  "homepage": "https://virkkunen.github.io/recipes",
   "private": true,
   "license": "GPL-3.0-or-later",
   "engines": {
