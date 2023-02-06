@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
 export default function useFetch() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchAPI = async (url) => {
     const response = await fetch(url);
     const json = await response.json();
-
     return json;
   };
   const [errors, setErrors] = useState(null);
@@ -32,25 +31,22 @@ export default function useFetch() {
     default:
       url = '';
     }
-
+    const response = await fetch(url);
+    const json = await response.json();
     setIsLoading(false);
-
-    return fetchAPI(url);
+    return json;
   };
 
   const fetchCategories = (pageName) => fetchAPI(`https://www.the${pageName}db.com/api/json/v1/1/list.php?c=list`);
 
   const fetchRecipe = async (pageName, id) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-
       const url = `https://www.the${pageName}db.com/api/json/v1/1/lookup.php?i=${id}`;
 
       const response = await fetch(url);
       const json = await response.json();
-
       setIsLoading(false);
-
       return json;
     } catch (error) {
       setErrors(error);
@@ -64,6 +60,7 @@ export default function useFetch() {
     fetchCategories,
     fetchRecipe,
     isLoading,
+    setIsLoading,
     errors,
   };
 }

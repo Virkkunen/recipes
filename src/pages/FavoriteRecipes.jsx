@@ -4,10 +4,10 @@ import CardDoneRecipe from '../components/CardDoneRecipe';
 import { AppContext } from '../context/AppProvider';
 
 function FavoriteRecipes() {
-  const { handleFavRecipesFilter } = useContext(AppContext);
+  const { handleFavRecipesFilter, category } = useContext(AppContext);
 
   return (
-    <Container>
+    <Container className="pb-5 mb-4 col-md-5 mx-auto">
       <Row>
         <ButtonGroup
           size="sm"
@@ -18,6 +18,7 @@ function FavoriteRecipes() {
             data-testid="filter-by-all-btn"
             name="all"
             onClick={ handleFavRecipesFilter }
+            active={ category === 'all' }
           >
             All
           </Button>
@@ -26,6 +27,7 @@ function FavoriteRecipes() {
             data-testid="filter-by-meal-btn"
             name="meal"
             onClick={ handleFavRecipesFilter }
+            active={ category === 'meal' }
           >
             Meals
           </Button>
@@ -34,6 +36,7 @@ function FavoriteRecipes() {
             data-testid="filter-by-drink-btn"
             name="drink"
             onClick={ handleFavRecipesFilter }
+            active={ category === 'drink' }
           >
             Drinks
           </Button>

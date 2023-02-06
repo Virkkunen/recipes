@@ -8,6 +8,8 @@ export default function useFooter() {
     case '/meals':
     case '/drinks':
     case '/profile':
+    case '/done-recipes':
+    case '/favorite-recipes':
       setVisible(true);
       break;
     default:

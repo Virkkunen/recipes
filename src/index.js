@@ -9,7 +9,7 @@ ReactDOM
   .createRoot(document.getElementById('root'))
   .render(
     <BrowserRouter>
-      <App />
+      <App className="wrapper" />
     </BrowserRouter>,
   );
 

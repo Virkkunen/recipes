@@ -8,7 +8,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { AppContext } from '../context/AppProvider';
 
 export default function CardDoneRecipe({ page }) {
-  const [linkCopied, setLinkCopied] = useState(false);
+  const [idRecipeCopied, setRecipeCopied] = useState('');
   const [seconds, setSeconds] = useState(0);
   const [recipeArr, setRecipeArr] = useState([]);
   const {
@@ -35,20 +35,20 @@ export default function CardDoneRecipe({ page }) {
 
   useEffect(() => {
     let interval = null;
-    if (linkCopied && seconds === THREE) {
+    if (Boolean(idRecipeCopied) && seconds === THREE) {
       interval = setInterval(() => {
         setSeconds((sec) => sec - 1);
       }, ONE_SECOND);
-    } else if (linkCopied && seconds === 0) {
+    } else if (Boolean(idRecipeCopied) && seconds === 0) {
       clearInterval(interval);
-      setLinkCopied(false);
+      setRecipeCopied('');
     }
-  }, [linkCopied, seconds]);
+  }, [seconds, idRecipeCopied]);
 
   const handleClick = useCallback(({ target: { name, id } }) => {
     const link = `http://localhost:3000/${name}s/${id}`;
     clipboardCopy(link);
-    setLinkCopied(true);
+    setRecipeCopied(id);
     setSeconds(THREE);
   }, []);
 
@@ -112,7 +112,7 @@ export default function CardDoneRecipe({ page }) {
                 variant="info"
                 onClick={ handleClick }
               >
-                {linkCopied
+                { idRecipeCopied === recipe.id
                   ? <span>Link copied!</span>
                   : (
                     <img

@@ -1,18 +1,22 @@
+/* stylelint-disable declaration-no-important */
 .meals {
   align-items: center;
-  background: #0fa36b;
   color: #464646;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  height: 100vh;
+  height: 45vh;
   justify-content: center;
   width: 100%;
 }
 
 .rocksGlass {
   animation: shake 1s infinite ease;
-  max-height: 80vh;
+  max-height: 50vh;
+}
+
+.bw-filter {
+  filter: grayscale(100%);
 }
 
 .checkedBox input {
@@ -86,10 +90,39 @@
   text-align: center;
 }
 
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.button-done-recipe {
+  bottom: 0;
+  box-shadow: 0 -3px 5px -2px rgba(0, 0, 0, 0.72);
+  position: fixed;
+  z-index: 99;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.82);
+}
+
 .small-text {
   font-size: 10px;
 }
 
-.text-decoration-none {
-  text-decoration: none;
+.wave-bg {
+  bottom: 0;
+  position: fixed;
+  width: 450vw;
+  z-index: -99;
+}
+
+@media only screen and ( min-width : 576px ) {
+
+  .wave-bg {
+    width: 100vw;
+  }
 }

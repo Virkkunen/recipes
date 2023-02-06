@@ -1,6 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { Button, Carousel, Container, Image, ListGroup, Row } from 'react-bootstrap';
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  Carousel,
+  Container,
+  Image,
+  ListGroup,
+  Row } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
@@ -8,6 +16,8 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import useFavorite from '../hooks/useFavorite';
 import { RecipesContext } from '../context/RecipesProvider';
+import { AppContext } from '../context/AppProvider';
+import PlaceholderRecipeDetails from '../components/PlaceholderRecipeDetails';
 
 const NUMBER_THIRTY_TWO = 32;
 
@@ -29,6 +39,7 @@ function RecipeDetails() {
     checkRecipeStatus,
     recipe,
   } = useContext(RecipesContext);
+  const { isLoading } = useContext(AppContext);
 
   useEffect(() => {
     getPageInfo(id, page);
@@ -56,7 +67,7 @@ function RecipeDetails() {
     toggleFavorite(recipe[0]);
   }, [favorite, recipe, toggleFavorite]);
 
-  return (
+  const renderRecipe = useCallback(() => (
     <>
       { recipe.map(({
         idMeal,
@@ -71,66 +82,93 @@ function RecipeDetails() {
         strDrinkThumb,
       }, index) => (
         (idMeal || idDrink) && (
-          <Container key={ `${idMeal || idDrink}${index}` }>
+          <Container
+            key={ `${idMeal || idDrink}${index}` }
+            className="pt-3 col-md-5 mx-auto"
+          >
             <Row>
-              <button
-                data-testid="share-btn"
-                onClick={ handleShare }
-                src={ shareIcon }
-              >
-                <img src={ shareIcon } alt="Share Icon" />
-              </button>
+              <ButtonGroup className="mb-3">
+                <Button
+                  variant="secondary"
+                  onClick={ () => history.push(idMeal ? '/meals' : '/drinks') }
+                >
+                  Back
+                </Button>
+                <Button
+                  data-testid="share-btn"
+                  onClick={ handleShare }
+                  src={ shareIcon }
+                  variant="info"
+                >
+                  <img src={ shareIcon } alt="Share Icon" />
+                </Button>
 
-              {copied && <p>Link copied!</p>}
+                { copied && <p>Link copied!</p> }
 
-              <button
-                data-testid="favorite-btn"
-                onClick={ handleFavorite }
-                src={ favorite ? blackHeartIcon : whiteHeartIcon }
-              >
-                <img
+                <Button
+                  data-testid="favorite-btn"
+                  onClick={ handleFavorite }
                   src={ favorite ? blackHeartIcon : whiteHeartIcon }
-                  alt="Heart Icon"
-                />
-              </button>
+                >
+                  <img
+                    src={ favorite ? blackHeartIcon : whiteHeartIcon }
+                    alt="Heart Icon"
+                  />
+                </Button>
+              </ButtonGroup>
             </Row>
-            <Row>
-              <h1 data-testid="recipe-title">{strMeal || strDrink}</h1>
-              <h2 data-testid="recipe-category">{`${strCategory} ${strAlcoholic}`}</h2>
-              <Image
-                data-testid="recipe-photo"
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Title data-testid="recipe-title">{strMeal || strDrink}</Card.Title>
+                <Card.Subtitle
+                  data-testid="recipe-category"
+                  className="text-muted"
+                >
+                  {`${strCategory} ${strAlcoholic}`}
+                </Card.Subtitle>
+              </Card.Body>
+              <Card.Img
                 src={ strMealThumb || strDrinkThumb }
+                data-testid="recipe-photo"
+                variant="bottom"
               />
-            </Row>
+            </Card>
             <Row>
-              <h3>Ingredients</h3>
-              <ListGroup as="ul">
-                { ingredients.map(({ ingredient, measure }, i) => (
+              <ListGroup
+                as="ul"
+                className="px-3 mb-3"
+              >
+                <ListGroup.Item
+                  as="li"
+                  className="text-bold"
+                  variant="secondary"
+                >
+                  Ingredients
+                </ListGroup.Item>
+                { ingredients.map((
+                  { ingredient, measure },
+                ) => (
                   <ListGroup.Item
                     key={ `${ingredient}${measure}` }
-                    disabled
-                    data-testid={ `${i}-ingredient-name-and-measure` }
+                    enabled="false"
+                    as="li"
                   >
-                    { `${ingredient} ${measure}` }
+                    { ` ${ingredient} ${measure}` }
                   </ListGroup.Item>
                 )) }
               </ListGroup>
             </Row>
             <Row>
               <h3>Instructions</h3>
-              <div data-testid="instructions">
-                {/* {
-                  strInstructions.split('STEP')
-                    .filter((_, i) => i)
-                    .map((step, i) => (
-                      <p key={ `step-${i}` }>{ `STEP${step}` }</p>
-                    ))
-                } */}
+              <p
+                data-testid="instructions"
+                className="mb-4"
+              >
                 { strInstructions }
-              </div>
+              </p>
             </Row>
             { page === 'meals' && (
-              <Row>
+              <Row className="mb-4">
                 <iframe
                   width="853"
                   height="480"
@@ -144,34 +182,35 @@ function RecipeDetails() {
                 />
               </Row>
             ) }
-            <Row>
-              <Carousel>
-                { recommended.map((recipes, iX) => (
-                  <Carousel.Item key={ `recipes${iX}` }>
-                    { recipes.map(({
-                      strDrinkThumb: imageDrink,
-                      strMealThumb: imageMeal,
-                      strDrink: nameDrink,
-                      strMeal: nameMeal,
-                      id: recipeId,
-                    }) => (
-                      <div
-                        key={ `recipe${recipeId}` }
-                        data-testid={ `${recipeId}-recommendation-card` }
+            <Row
+              className="pb-3 mb-5"
+            >
+              <h2>Recommendations</h2>
+              <Carousel fade>
+                { recommended.map(({
+                  strDrinkThumb: imageDrink,
+                  strMealThumb: imageMeal,
+                  strDrink: nameDrink,
+                  strMeal: nameMeal,
+                  id: recipeId,
+                }) => (
+                  <Carousel.Item
+                    key={ `recipes${recipeId}` }
+                  >
+                    <Image
+                      className="d-block w-100"
+                      src={ imageMeal || imageDrink }
+                      alt={ nameMeal || nameDrink }
+                      rounded
+                    />
+                    <Carousel.Caption>
+                      <h3
+                        data-testid={ `${recipeId}-recommendation-title` }
+                        className="text-shadow"
                       >
-                        <img
-                          className="d-block w-100"
-                          src={ imageMeal || imageDrink }
-                          alt={ nameMeal || nameDrink }
-                        />
-
-                        <p
-                          data-testid={ `${recipeId}-recommendation-title` }
-                        >
-                          { nameMeal || nameDrink }
-                        </p>
-                      </div>
-                    )) }
+                        { nameMeal || nameDrink }
+                      </h3>
+                    </Carousel.Caption>
                   </Carousel.Item>
                 )) }
               </Carousel>
@@ -179,7 +218,7 @@ function RecipeDetails() {
             { !done && (
               <Row>
                 <Button
-                  style={ { position: 'fixed', bottom: 0, width: '100vw' } }
+                  className="button-done-recipe col-md-5"
                   variant="primary"
                   size="lg"
                   data-testid="start-recipe-btn"
@@ -192,8 +231,11 @@ function RecipeDetails() {
             ) }
           </Container>
         )
-      )) }
+      ))}
     </>
+  ));
+  return (
+    (isLoading && <PlaceholderRecipeDetails />) || renderRecipe()
   );
 }
 
