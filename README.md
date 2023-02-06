@@ -15,15 +15,10 @@ A simples Recipe discovery & tracker made with React
 
 ## Screenshots
 
-![Preview 01](./public/demo/01.png)
-![Preview 02](./public/demo/02.png)
-![Preview 03](./public/demo/03.png)
-![Preview 04](./public/demo/04.png)
-
 
 ## Demo
 
-[Recipes](https://vrkknn.net/recipes)
+[Recipes](https://tryberecipes.vercel.app)
 
 
 ## Run Locally
