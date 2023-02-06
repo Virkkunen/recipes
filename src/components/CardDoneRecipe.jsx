@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, ButtonGroup, Card, Stack } from 'react-bootstrap';
+import { Button, ButtonGroup, Card, Col, Row, Stack } from 'react-bootstrap';
 import clipboardCopy from 'clipboard-copy';
 import { FaHeart, FaShareAlt } from 'react-icons/fa';
 import { AppContext } from '../context/AppProvider';
@@ -52,72 +52,70 @@ export default function CardDoneRecipe({ page }) {
   }, []);
 
   return (
-    <Stack
-      direction="vertical"
-      gap={ 3 }
-    >
+    <Row xs={ 1 } md={ 3 } className="g-4 mx-auto">
       { recipeArr && recipeArr.map((recipe, index) => (
-        <Card key={ recipe.id }>
-          <Link to={ `/${recipe.type}s/${recipe.id}` }>
-            <Card.Img
-              variant="top"
-              src={ recipe.image }
-              data-testid={ `${index}-horizontal-image` }
-              alt={ `image of ${recipe.name}` }
-            />
-          </Link>
-          <Card.Body>
-            <Link
-              to={ `/${recipe.type}s/${recipe.id}` }
-              className="text-decoration-none"
-            >
-              <Card.Title
-                data-testid={ `${index}-horizontal-name` }
-              >
-                { recipe.name }
-              </Card.Title>
+        <Col key={ recipe.id }>
+          <Card>
+            <Link to={ `/${recipe.type}s/${recipe.id}` }>
+              <Card.Img
+                variant="top"
+                src={ recipe.image }
+                data-testid={ `${index}-horizontal-image` }
+                alt={ `image of ${recipe.name}` }
+              />
             </Link>
-            <Card.Text
-              data-testid={ `${index}-horizontal-top-text` }
-              className="mb-2"
-            >
-              { recipe.nationality && `${recipe.nationality} - ` }
-              { recipe.alcoholicOrNot && `${recipe.alcoholicOrNot} - ` }
-              { recipe.category }
-            </Card.Text>
-            <Card.Subtitle
-              className="text-muted mb-1"
-              data-testid={ `${index}-horizontal-done-date` }
-            >
-              { recipe.doneDate }
-            </Card.Subtitle>
-            <Stack
-              direction="horizontal"
-              gap={ 1 }
-              className="mb-3"
-            >
-              { recipe.tags && recipe.tags.map((tag) => (
-                <Card.Subtitle
-                  data-testid={ `${index}-${tag}-horizontal-tag` }
-                  key={ tag }
-                  className="text-muted"
-                >
-                  { tag }
-                </Card.Subtitle>
-              ))}
-            </Stack>
-            <ButtonGroup size="sm">
-              <Button
-                variant="info"
-                onClick={ handleClick }
+            <Card.Body>
+              <Link
+                to={ `/${recipe.type}s/${recipe.id}` }
+                className="text-decoration-none"
               >
-                { idRecipeCopied === recipe.id
-                  ? <span>Link copied!</span>
-                  : (
-                    <FaShareAlt color="#ffffffcc" />
-                  )}
-              </Button>
-              { page === 'fav'
+                <Card.Title
+                  data-testid={ `${index}-horizontal-name` }
+                >
+                  { recipe.name }
+                </Card.Title>
+              </Link>
+              <Card.Text
+                data-testid={ `${index}-horizontal-top-text` }
+                className="mb-2"
+              >
+                { recipe.nationality && `${recipe.nationality} - ` }
+                { recipe.alcoholicOrNot && `${recipe.alcoholicOrNot} - ` }
+                { recipe.category }
+              </Card.Text>
+              <Card.Subtitle
+                className="text-muted mb-1"
+                data-testid={ `${index}-horizontal-done-date` }
+              >
+                { recipe.doneDate }
+              </Card.Subtitle>
+              <Stack
+                direction="horizontal"
+                gap={ 1 }
+                className="mb-3"
+              >
+                { recipe.tags && recipe.tags.map((tag) => (
+                  <Card.Subtitle
+                    data-testid={ `${index}-${tag}-horizontal-tag` }
+                    key={ tag }
+                    className="text-muted"
+                  >
+                    { tag }
+                  </Card.Subtitle>
+                ))}
+              </Stack>
+              <ButtonGroup size="sm">
+                <Button
+                  variant="info"
+                  onClick={ handleClick }
+                >
+                  { idRecipeCopied === recipe.id
+                    ? <span>Link copied!</span>
+                    : (
+                      <FaShareAlt color="#ffffffcc" />
+                    )}
+                </Button>
+                { page === 'fav'
             && (
               <Button
                 variant="primary"
@@ -126,13 +124,13 @@ export default function CardDoneRecipe({ page }) {
                 <FaHeart id={ recipe.id } />
               </Button>
             )}
-            </ButtonGroup>
+              </ButtonGroup>
 
-          </Card.Body>
-        </Card>
+            </Card.Body>
+          </Card>
+        </Col>
       ))}
-
-    </Stack>
+    </Row>
   );
 }
 
