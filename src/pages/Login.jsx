@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-max-depth */
 import PropTypes from 'prop-types';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { Button, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Container, Form, Row } from 'react-bootstrap';
 import { AuthContext } from '../context/AuthProvider';
 import rockGlass from '../images/rockGlass.svg';
 import layeredWaves from '../images/layeredWaves.svg';
@@ -84,6 +85,9 @@ function Login({ history }) {
               Enter
             </Button>
           </Form>
+        </Row>
+        <Row className="my-5 mx-auto col-md-5 text-center">
+          <Alert variant="info">RecipesApp works better on mobile browsers</Alert>
         </Row>
       </Container>
       <object
