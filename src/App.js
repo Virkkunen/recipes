@@ -24,19 +24,18 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/recipes" component={ Login } />
-            <Route exact path="/recipes/meals" component={ Recipes } />
-            <Route exact path="/recipes/drinks" component={ Recipes } />
-            <Route exact path="/recipes/meals/:id" component={ RecipeDetails } />
-            <Route exact path="/recipes/drinks/:id" component={ RecipeDetails } />
-            <Route exact path="/recipes/meals/:id/in-progress" component={ RecipeInProgress } />
+            <Route path="/meals" component={ Recipes } />
+            <Route path="/drinks" component={ Recipes } />
+            <Route path="/meals/:id" component={ RecipeDetails } />
+            <Route path="/drinks/:id" component={ RecipeDetails } />
+            <Route path="/meals/:id/in-progress" component={ RecipeInProgress } />
             <Route
-              exact
-              path="/recipes/drinks/:id/in-progress"
+              path="/drinks/:id/in-progress"
               component={ RecipeInProgress }
             />
-            <Route exact path="/recipes/profile" component={ Profile } />
-            <Route exact path="/recipes/done-recipes" component={ DoneRecipes } />
-            <Route exact path="/recipes/favorite-recipes" component={ FavoriteRecipes } />
+            <Route path="/profile" component={ Profile } />
+            <Route path="/done-recipes" component={ DoneRecipes } />
+            <Route path="/favorite-recipes" component={ FavoriteRecipes } />
           </Switch>
           <Footer />
         </RecipesProvider>
