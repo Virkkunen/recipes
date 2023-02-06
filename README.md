@@ -56,6 +56,11 @@ Start the server
 ## Authors
 
 - [@Virkkunen](https://www.github.com/Virkkunen)
+- [@Mixchelle](https://www.github.com/Mixchelle)
+- [@EuJosue](https://www.github.com/EuJosue)
+- [@thiagopicorelli](https://www.github.com/thiagopicorelli)
+- [@pedropugas](https://www.github.com/pedropugas)
+- [@Merkulino](https://www.github.com/Merkulino)
 
 
 ## Tech Stack
