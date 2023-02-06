@@ -1,10 +1,63 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+
+# RecipesApp
+
+A simples Recipe discovery & tracker made with React
+
+
+## Features
+
+- Search for recipes by name and ingredients needed
+- Meals & drinks recipes
+- Detailed instructions with video guides
+- Save favorite recipes
+- Responsive design
+
+
+## Screenshots
+
+![Preview 01](./public/demo/01.png)
+![Preview 02](./public/demo/02.png)
+![Preview 03](./public/demo/03.png)
+![Preview 04](./public/demo/04.png)
+
+
+## Demo
+
+[Recipes](https://vrkknn.net/recipes)
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Virkkunen/recipes.git
+```
+
+Go to the project directory
+
+```bash
+  cd recipes
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+
+## Authors
+
+- [@Virkkunen](https://www.github.com/Virkkunen)
+
+
+## Tech Stack
+
+React, React hooks, context API, react-bootstrap, react-icons
