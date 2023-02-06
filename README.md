@@ -16,6 +16,10 @@ A simple app that shows recipes and how to prepare them, made with React
 ## Screenshots
 
 
+https://user-images.githubusercontent.com/9111925/217068989-bfd5896d-b1d6-4efd-b9ea-5f7aa8bf2ac4.mp4
+
+
+
 ## Demo
 
 [Recipes](https://tryberecipes.vercel.app)
