@@ -1,7 +1,7 @@
 
 # RecipesApp
 
-A simples Recipe discovery & tracker made with React
+A simple app that shows recipes and how to prepare them, made with React
 
 
 ## Features
